@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+<!-- header block -->
+{% block head %}{% endblock %}
+
+
+<!-- body block -->
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Book Records</h1>
+    <p style="text-align: center">Simple Flask App to test the SQLite CRUD and Rest API development by Waqas Khalid Obeidy. Hosted on free web-hosting service like Heroku using heroku cli and integrated with github version control.</p>
+    
+    <div class="form" align="center" >
+        <form action="/" method="POST">
+            <input type="text" name="content" id="content">
+            <input type="submit" value="Add Book">
+        </form>
+    </div>
+
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center">There are no books. Add one now!</h4>
+    {% else %}
+    <table align="center">
+        <tr style="text-align: center">
+            <th>Book Name</th>
+            <th>Start Date</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+            <tr style="text-align: center">
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.date() }}</td>
+                <td>
+                    <a href="/delete/{{task.id}}">Delete</a>
+                    <br>
+                    <a href="/edit/{{task.id}}">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+  
+
+</div>
+
+{% endblock %}
